@@ -85,10 +85,9 @@ def parse_args():
 
 
 def main(args):
-    print(args)
     if args.wandb:
         wandb.login()
-        wandb.init(project="atia-project", config=args.dict(), tags=["mnist"])
+        wandb.init(project="atia-project", config=vars(args), tags=["mnist"])
     device = "cpu" if args.cpu else "cuda"
     train_dataloader, test_dataloader = create_mnist_dataloaders(
         batch_size=args.batch_size, image_size=16
