@@ -85,6 +85,7 @@ def parse_args():
 
 
 def main(args):
+    print(args)
     if args.wandb:
         wandb.login()
         wandb.init(project="atia-project", config=args.dict(), tags=["mnist"])
