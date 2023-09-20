@@ -131,7 +131,6 @@ def main(args):
         for j, (image, target) in enumerate(train_dataloader):
             noise = torch.randn_like(image).to(device)
             image = image.to(device)
-            print(image.shape, noise.shape)
             pred = model(image, noise)
             loss = loss_fn(pred, noise)
             loss.backward()
