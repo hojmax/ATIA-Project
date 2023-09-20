@@ -155,7 +155,7 @@ def main(args):
         ckpt = {"model": model.state_dict(), "model_ema": model_ema.state_dict()}
 
         os.makedirs("results", exist_ok=True)
-        torch.save(ckpt, "results/steps_{:0>8}.pt".format(global_steps))
+        torch.save(ckpt, f"results/epoch_{i+1}.pt")
 
         model_ema.eval()
         samples = model_ema.module.sampling(
@@ -163,7 +163,7 @@ def main(args):
         )
         save_image(
             samples,
-            "results/steps_{:0>8}.png".format(global_steps),
+            f"results/epoch_{i+1}.png",
             nrow=int(math.sqrt(args.n_samples)),
         )
         avg_loss = total_loss / len(train_dataloader)
