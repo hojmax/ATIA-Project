@@ -167,7 +167,7 @@ def main(args):
             nrow=int(math.sqrt(args.n_samples)),
         )
         avg_loss = total_loss / len(train_dataloader)
-        if args.log_wandb:
+        if args.wandb:
             wandb.log(
                 {
                     "epoch": i + 1,
