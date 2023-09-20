@@ -174,7 +174,7 @@ def main(args):
                     "loss": avg_loss,
                     "global_steps": global_steps,
                     "lr": scheduler.get_last_lr()[0],
-                    f"sample": wandb.Image(f"results/epoch_{i}.png"),
+                    f"sample": wandb.Image(f"results/epoch_{i+1}.png"),
                 }
             )
 
