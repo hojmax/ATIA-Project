@@ -90,11 +90,11 @@ def main(args):
         wandb.init(project="atia-project", config=args.dict(), tags=["mnist"])
     device = "cpu" if args.cpu else "cuda"
     train_dataloader, test_dataloader = create_mnist_dataloaders(
-        batch_size=args.batch_size, image_size=14
+        batch_size=args.batch_size, image_size=28
     )
     model = MNISTDiffusion(
         timesteps=args.timesteps,
-        image_size=14,
+        image_size=28,
         in_channels=1,
         base_dim=args.model_base_dim,
         dim_mults=[2, 4],
