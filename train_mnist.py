@@ -66,6 +66,7 @@ def parse_args():
     parser.add_argument(
         "--model_ema_decay", type=float, help="ema model decay", default=0.995
     )
+    parser.add_argument("--image_size", type=int, help="image resize", default=28)
     parser.add_argument(
         "--log_freq",
         type=int,
@@ -90,11 +91,11 @@ def main(args):
         wandb.init(project="atia-project", config=vars(args), tags=["mnist"])
     device = "cpu" if args.cpu else "cuda"
     train_dataloader, test_dataloader = create_mnist_dataloaders(
-        batch_size=args.batch_size, image_size=8
+        batch_size=args.batch_size, image_size=args.image_size
     )
     model = MNISTDiffusion(
         timesteps=args.timesteps,
-        image_size=8,
+        image_size=args.image_size,
         in_channels=1,
         base_dim=args.model_base_dim,
         dim_mults=[2, 4],

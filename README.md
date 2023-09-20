@@ -35,5 +35,6 @@ A pytorch version of DDPM: https://github.com/lucidrains/denoising-diffusion-pyt
 !git clone https://{github_api_key_here}@github.com/hojmax/ATIA-Project.git
 %cd ATIA-Project
 !git pull
-#!pip install -r requirements.txt --quiet
+!pip install -r requirements.txt --quiet
+!python train_mnist.py --wandb --image_size 8
 ```
