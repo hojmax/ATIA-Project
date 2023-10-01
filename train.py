@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation, PillowWriter
 from ddpm import DDPM
 from unet import ContextUnet
+import os
 import wandb
 
 
@@ -23,6 +24,10 @@ def train_mnist():
     save_model = False
     save_dir = "./data/diffusion_outputs10/"
     ws_test = [0.0, 0.5, 2.0]  # strength of generative guidance
+
+    # create save_dir if it doesn't exist
+    if not os.path.exists(save_dir):
+        os.makedirs(save_dir)
 
     ddpm = DDPM(
         nn_model=ContextUnet(in_channels=1, n_feat=n_feat, n_classes=n_classes),
