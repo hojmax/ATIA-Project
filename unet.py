@@ -125,8 +125,7 @@ class ContextUnet(nn.Module):
             nn.Conv2d(n_feat, self.in_channels, 3, 1, 1),
         )
 
-    def forward(self, x, c, t, context_mask):
-        # x is (noisy) image, c is context label, t is timestep,
+    def forward(self, x, t):
         x = self.init_conv(x)
         down1 = self.down1(x)
         down2 = self.down2(down1)

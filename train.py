@@ -30,13 +30,11 @@ def train_mnist():
         os.makedirs(save_dir)
 
     ddpm = DDPM(
-        nn_model=ContextUnet(in_channels=1, n_feat=n_feat, n_classes=n_classes),
+        eps_model=ContextUnet(in_channels=1, n_feat=n_feat, n_classes=n_classes),
         betas=(1e-4, 0.02),
         n_T=n_T,
-        device=device,
-        drop_prob=0.1,
     )
-    ddpm.to(device)
+    ddpm  # .to(device)
 
     # optionally load a model
     # ddpm.load_state_dict(torch.load("./data/diffusion_outputs/ddpm_unet01_mnist_9.pth"))
@@ -60,9 +58,8 @@ def train_mnist():
         loss_ema = None
         for x, c in pbar:
             optim.zero_grad()
-            x = x.to(device)
-            c = c.to(device)
-            loss = ddpm(x, c)
+            x = x  # .to(device)
+            loss = ddpm(x)
             loss.backward()
             if loss_ema is None:
                 loss_ema = loss.item()
